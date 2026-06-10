@@ -22,6 +22,7 @@
   --purple:#3c3489;--purple-bg:#eeedfe;
   --pink:#72243e;--pink-bg:#fbeaf0;
   --teal:#085041;--teal-bg:#e1f5ee;
+  --danger:#c0392b;--danger-bg:#fdecea;
   --radius:10px;--radius-lg:14px;
   --font:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
@@ -36,23 +37,38 @@
     --purple:#9b94e8;--purple-bg:#1a1840;
     --pink:#e08aaa;--pink-bg:#2b0f1e;
     --teal:#4dbfa0;--teal-bg:#04201a;
+    --danger:#e05c4a;--danger-bg:#2b0a07;
   }
 }
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;max-width:640px;margin:0 auto}
 #sync-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--bg2);border-bottom:0.5px solid var(--border);font-size:12px;color:var(--text3);position:sticky;top:0;z-index:100}
 #sync-status{display:flex;align-items:center;gap:6px}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:var(--text3)}
-.sync-dot.ok{background:var(--success)}
-.sync-dot.err{background:#c0392b}
-.main{padding:0 0 80px}
+.sync-dot.ok{background:var(--success)}.sync-dot.err{background:var(--danger)}
+.main{padding:0 0 100px}
 .header{padding:20px 16px 8px}
-.header-title{font-size:22px;font-weight:500;color:var(--text)}
+.header-title{font-size:22px;font-weight:500}
 .header-date{font-size:13px;color:var(--text3);margin-top:2px}
 .nav{display:flex;border-bottom:0.5px solid var(--border);background:var(--bg);position:sticky;top:41px;z-index:99}
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px;font-size:10px;color:var(--text3);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
 .nb svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .nb.on{color:var(--text);font-weight:500;border-bottom-color:var(--text)}
 .page{display:none;padding:0 16px}.page.on{display:block}
+
+/* TIMELINE BANNER */
+.timeline-banner{border-radius:var(--radius-lg);padding:12px 14px;margin:14px 0 4px;border-left:3px solid}
+.tl-urgent{background:var(--danger-bg);border-color:var(--danger)}
+.tl-soon{background:var(--warn-bg);border-color:var(--warn)}
+.tl-ok{background:var(--success-bg);border-color:var(--success)}
+.tl-title{font-size:12px;font-weight:500;margin-bottom:6px}
+.tl-item{font-size:12px;color:var(--text2);padding:3px 0;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid var(--border)}
+.tl-item:last-child{border-bottom:none}
+.tl-badge{font-size:10px;font-weight:500;padding:2px 7px;border-radius:20px;flex-shrink:0;white-space:nowrap}
+.urgent-badge{background:var(--danger-bg);color:var(--danger)}
+.soon-badge{background:var(--warn-bg);color:var(--warn)}
+.ok-badge{background:var(--success-bg);color:var(--success)}
+
+/* METRICS */
 .metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px 0}
 .metric{background:var(--bg2);border-radius:var(--radius);padding:12px}
 .mlabel{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
@@ -60,31 +76,46 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .msub{font-size:10px;color:var(--text3);margin-top:3px}
 .pbar{height:3px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
 .pfill{height:100%;border-radius:2px;background:var(--success);transition:width .3s}
-.sec{font-size:11px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 8px}
+
+.sec{font-size:11px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 8px;display:flex;align-items:center;justify-content:space-between}
+.sec-btn{font-size:12px;color:var(--info);font-weight:500;background:none;border:none;cursor:pointer;text-transform:none;letter-spacing:0;padding:0}
+
+/* CARDS */
 .card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:12px}
-.trow{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:0.5px solid var(--border)}
+.trow{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border-bottom:0.5px solid var(--border)}
 .trow:last-child{border-bottom:none}
 .trow:active{background:var(--bg2)}
-.cb{width:20px;height:20px;border-radius:6px;border:0.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all .15s}
+.cb{width:20px;height:20px;border-radius:6px;border:0.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all .15s;margin-top:1px}
 .cb.on{background:var(--success-bg);border-color:var(--success)}
 .cb.on::after{content:'';width:5px;height:9px;border:1.5px solid var(--success);border-top:none;border-left:none;transform:rotate(45deg) translateY(-1px);display:block}
-.tl{font-size:14px;flex:1;line-height:1.35}
+.tinfo{flex:1;min-width:0}
+.tl{font-size:14px;line-height:1.35}
 .tl.done{text-decoration:line-through;color:var(--text3)}
-.pill{font-size:10px;font-weight:500;padding:3px 8px;border-radius:20px;flex-shrink:0}
+.tmeta{display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap}
+.pill{font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px;flex-shrink:0}
 .p-am{background:var(--warn-bg);color:var(--warn)}
 .p-pm{background:var(--info-bg);color:var(--info)}
 .p-eve{background:var(--purple-bg);color:var(--purple)}
 .p-gym{background:var(--success-bg);color:var(--success)}
 .p-lab{background:var(--teal-bg);color:var(--teal)}
-.dbtn{font-size:18px;color:var(--text3);cursor:pointer;padding:0 4px;line-height:1;flex-shrink:0}
-.dbtn:active{color:#c0392b}
-.add-row{display:flex;gap:8px;padding:10px 14px;background:var(--bg2);border-top:0.5px solid var(--border)}
-.add-row input,.add-row select,.add-row textarea{background:var(--bg);color:var(--text);border:0.5px solid var(--border2);border-radius:var(--radius);padding:8px 10px;font-size:14px;font-family:var(--font)}
-.add-row input{flex:1}
+.time-pill{font-size:10px;color:var(--text3);display:flex;align-items:center;gap:3px}
+.due-soon{color:var(--warn);font-weight:500}
+.due-urgent{color:var(--danger);font-weight:500}
+.dbtn{font-size:18px;color:var(--text3);cursor:pointer;padding:0 4px;line-height:1;flex-shrink:0;margin-top:1px}
+.dbtn:active{color:var(--danger)}
+
+/* ADD ROWS */
+.add-row{display:flex;gap:8px;padding:10px 14px;background:var(--bg2);border-top:0.5px solid var(--border);flex-wrap:wrap}
+.add-row input,.add-row select{background:var(--bg);color:var(--text);border:0.5px solid var(--border2);border-radius:var(--radius);padding:8px 10px;font-size:14px;font-family:var(--font)}
+.add-row input{flex:1;min-width:100px}
 .add-row select{flex:0 0 70px}
+.add-row input[type=time],.add-row input[type=date]{flex:0 0 auto}
 .abtn{padding:8px 14px;border-radius:var(--radius);border:0.5px solid var(--border2);font-size:14px;cursor:pointer;background:var(--bg);color:var(--text);white-space:nowrap;font-family:var(--font)}
 .abtn:active{transform:scale(.97);background:var(--bg2)}
+.abtn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
 .empty{font-size:13px;color:var(--text3);padding:20px 14px;text-align:center}
+
+/* GOALS */
 .goal-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-bottom:0.5px solid var(--border)}
 .goal-item:last-child{border-bottom:none}
 .goal-item:active{background:var(--bg2)}
@@ -92,33 +123,64 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .gt{font-size:14px;font-weight:500;margin-bottom:2px;line-height:1.3}
 .gt.done{text-decoration:line-through;color:var(--text3)}
 .gs{font-size:12px;color:var(--text2);line-height:1.4}
-.cpill{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;margin-top:5px;font-weight:500}
+.gmeta{display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap}
+.cpill{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500}
 .c-career{background:var(--info-bg);color:var(--info)}
 .c-appearance{background:var(--warn-bg);color:var(--warn)}
 .c-inner{background:var(--purple-bg);color:var(--purple)}
 .c-health{background:var(--success-bg);color:var(--success)}
 .c-social{background:var(--pink-bg);color:var(--pink)}
+.gdue{font-size:11px;color:var(--text3)}
+.gdue.urgent{color:var(--danger);font-weight:500}
+.gdue.soon{color:var(--warn);font-weight:500}
+
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
 .chip{font-size:12px;padding:5px 13px;border-radius:20px;border:0.5px solid var(--border2);cursor:pointer;background:var(--bg);color:var(--text2)}
 .chip.on{background:var(--bg2);color:var(--text);border-color:var(--border2);font-weight:500}
 .gadd{display:flex;flex-direction:column;gap:8px;padding:12px 14px}
-.gadd input,.gadd select{background:var(--bg2);color:var(--text);border:0.5px solid var(--border);border-radius:var(--radius);padding:9px 12px;font-size:14px;font-family:var(--font);width:100%}
+.gadd input,.gadd select,.gadd textarea{background:var(--bg2);color:var(--text);border:0.5px solid var(--border);border-radius:var(--radius);padding:9px 12px;font-size:14px;font-family:var(--font);width:100%}
+.gadd-row{display:flex;gap:8px}
+.gadd-row input,.gadd-row select{flex:1}
+
+/* ROUTINES */
+.rout-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg2);border-bottom:0.5px solid var(--border)}
+.rout-name{font-size:13px;font-weight:500}
+.rout-actions{display:flex;gap:8px;align-items:center}
 .rrow{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:0.5px solid var(--border)}
 .rrow:last-child{border-bottom:none}
 .rnum{font-size:11px;font-weight:500;color:var(--text3);width:20px;text-align:center;flex-shrink:0}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:2px 6px;border-radius:6px}
+.icon-btn:hover{background:var(--bg3);color:var(--text)}
+.icon-btn.del:active{color:var(--danger)}
+
+/* NOTES */
 .ntags{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 10px}
-.ntag{font-size:12px;padding:5px 13px;border-radius:20px;border:0.5px solid var(--border2);cursor:pointer;background:var(--bg);color:var(--text2)}
+.ntag{font-size:12px;padding:5px 13px;border-radius:20px;border:0.5px solid var(--border2);cursor:pointer;background:var(--bg);color:var(--text2);display:flex;align-items:center;gap:5px}
 .ntag.on{background:var(--info-bg);color:var(--info);border-color:var(--info)}
+.ntag-del{font-size:14px;line-height:1;opacity:.6}
+.ntag-del:hover{opacity:1}
 textarea.note{width:100%;min-height:260px;background:var(--bg);color:var(--text);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:14px;font-size:14px;font-family:var(--font);line-height:1.6;resize:vertical}
 textarea.note:focus{outline:none;border-color:var(--border2)}
 .hint{font-size:11px;color:var(--text3);margin-top:6px;height:16px}
-.login-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;padding:32px 16px;gap:16px}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg);border-radius:20px 20px 0 0;padding:20px 20px 40px;width:100%;max-width:640px;max-height:80vh;overflow-y:auto}
+.modal-title{font-size:16px;font-weight:500;margin-bottom:16px}
+.modal input,.modal select{width:100%;padding:10px 12px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);font-size:14px;font-family:var(--font);margin-bottom:10px}
+.modal-btns{display:flex;gap:8px;margin-top:6px}
+.modal-btns button{flex:1;padding:11px;border-radius:var(--radius);border:0.5px solid var(--border2);font-size:14px;cursor:pointer;font-family:var(--font);background:var(--bg2);color:var(--text)}
+.modal-btns .confirm{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+/* LOGIN */
+.login-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;padding:32px 16px;gap:14px}
 .login-title{font-size:22px;font-weight:500;text-align:center}
 .login-sub{font-size:14px;color:var(--text2);text-align:center;line-height:1.5}
 .login-input{width:100%;max-width:320px;padding:12px 16px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg2);color:var(--text);font-size:16px;font-family:var(--font)}
 .login-btn{width:100%;max-width:320px;padding:13px;border-radius:var(--radius);border:none;background:var(--text);color:var(--bg);font-size:16px;font-weight:500;cursor:pointer;font-family:var(--font)}
 .login-btn:active{transform:scale(.98)}
-.login-err{font-size:13px;color:#c0392b;text-align:center}
+.login-err{font-size:13px;color:var(--danger);text-align:center;min-height:18px}
 .login-switch{font-size:13px;color:var(--text2);cursor:pointer;text-align:center}
 .login-switch span{color:var(--text);text-decoration:underline}
 </style>
@@ -127,7 +189,7 @@ textarea.note:focus{outline:none;border-color:var(--border2)}
 
 <div id="login-screen" style="display:none">
   <div class="login-wrap">
-    <div style="font-size:36px">🧠</div>
+    <div style="font-size:40px">🧠</div>
     <div class="login-title">Personal OS</div>
     <div class="login-sub" id="login-sub">Sign in to sync across all your devices</div>
     <input class="login-input" id="lemail" type="email" placeholder="Email address" autocomplete="email"/>
@@ -141,7 +203,7 @@ textarea.note:focus{outline:none;border-color:var(--border2)}
 <div id="app-screen" style="display:none">
   <div id="sync-bar">
     <div id="sync-status"><div class="sync-dot" id="sdot"></div><span id="stext">Connecting...</span></div>
-    <div style="cursor:pointer;color:var(--text2)" onclick="signOut()">Sign out</div>
+    <div style="cursor:pointer;color:var(--text2);font-size:12px" onclick="signOut()">Sign out</div>
   </div>
   <div class="main">
     <div class="header">
@@ -150,24 +212,22 @@ textarea.note:focus{outline:none;border-color:var(--border2)}
     </div>
     <nav class="nav">
       <button class="nb on" onclick="go('daily',this)" aria-label="Daily">
-        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Daily
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Daily
       </button>
       <button class="nb" onclick="go('routines',this)" aria-label="Routines">
-        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        Routines
+        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Routines
       </button>
       <button class="nb" onclick="go('goals',this)" aria-label="Goals">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-        Goals
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Goals
       </button>
       <button class="nb" onclick="go('notes',this)" aria-label="Notes">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        Notes
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Notes
       </button>
     </nav>
 
+    <!-- DAILY -->
     <div id="p-daily" class="page on">
+      <div id="timeline-section"></div>
       <div class="metrics">
         <div class="metric"><div class="mlabel">Today</div><div class="mval" id="m-done">0/0</div><div class="pbar"><div class="pfill" id="m-bar" style="width:0"></div></div></div>
         <div class="metric"><div class="mlabel">Streak</div><div class="mval" id="m-streak">0</div><div class="msub">days</div></div>
@@ -179,20 +239,19 @@ textarea.note:focus{outline:none;border-color:var(--border2)}
         <div class="add-row">
           <input id="ti" placeholder="Add a task..." onkeydown="if(event.key==='Enter')addTask()"/>
           <select id="tt"><option value="am">AM</option><option value="pm">PM</option><option value="eve">Eve</option><option value="gym">Gym</option><option value="lab">Lab</option></select>
-          <button class="abtn" onclick="addTask()">Add</button>
+          <input type="time" id="ttime" style="flex:0 0 auto"/>
+          <button class="abtn primary" onclick="addTask()">Add</button>
         </div>
       </div>
     </div>
 
+    <!-- ROUTINES -->
     <div id="p-routines" class="page">
-      <div class="sec">Morning skincare</div>
-      <div class="card"><div id="r-morning"></div><div class="add-row"><input id="ri-m" placeholder="Add step..." onkeydown="if(event.key==='Enter')addR('morning','ri-m')"/><button class="abtn" onclick="addR('morning','ri-m')">Add</button></div></div>
-      <div class="sec">Evening skincare</div>
-      <div class="card"><div id="r-evening"></div><div class="add-row"><input id="ri-e" placeholder="Add step..." onkeydown="if(event.key==='Enter')addR('evening','ri-e')"/><button class="abtn" onclick="addR('evening','ri-e')">Add</button></div></div>
-      <div class="sec">Gym & body</div>
-      <div class="card"><div id="r-gym"></div><div class="add-row"><input id="ri-g" placeholder="Add step..." onkeydown="if(event.key==='Enter')addR('gym','ri-g')"/><button class="abtn" onclick="addR('gym','ri-g')">Add</button></div></div>
+      <div class="sec">My routines <button class="sec-btn" onclick="openNewRoutineModal()">+ New routine</button></div>
+      <div id="routines-list"></div>
     </div>
 
+    <!-- GOALS -->
     <div id="p-goals" class="page">
       <div class="chips" id="fchips">
         <span class="chip on" onclick="filt('all',this)">All</span>
@@ -207,23 +266,45 @@ textarea.note:focus{outline:none;border-color:var(--border2)}
       <div class="card"><div class="gadd">
         <input id="gi-t" placeholder="Goal..."/>
         <input id="gi-s" placeholder="Why it matters..."/>
-        <select id="gi-c"><option value="career">Career</option><option value="appearance">Appearance</option><option value="inner">Inner work</option><option value="health">Health</option><option value="social">Social</option></select>
-        <button class="abtn" onclick="addGoal()">Add goal</button>
+        <div class="gadd-row">
+          <select id="gi-c"><option value="career">Career</option><option value="appearance">Appearance</option><option value="inner">Inner work</option><option value="health">Health</option><option value="social">Social</option></select>
+          <input type="date" id="gi-date" title="Due date (optional)"/>
+          <input type="time" id="gi-time" title="Due time (optional)"/>
+        </div>
+        <button class="abtn primary" onclick="addGoal()">Add goal</button>
       </div></div>
     </div>
 
+    <!-- NOTES -->
     <div id="p-notes" class="page">
-      <div class="ntags" id="ntags">
-        <span class="ntag" onclick="loadN('color',this)">Deep Autumn</span>
-        <span class="ntag" onclick="loadN('hair',this)">Hair & barber</span>
-        <span class="ntag" onclick="loadN('skin',this)">Skincare</span>
-        <span class="ntag" onclick="loadN('kp',this)">KP routine</span>
-        <span class="ntag" onclick="loadN('wardrobe',this)">Wardrobe</span>
-        <span class="ntag" onclick="loadN('growth',this)">Growth</span>
-        <span class="ntag" onclick="loadN('custom',this)">Custom</span>
-      </div>
-      <textarea class="note" id="narea" placeholder="Select a tag above or write your own notes..." oninput="saveN()"></textarea>
+      <div class="sec">Reference notes <button class="sec-btn" onclick="openNewNoteModal()">+ New category</button></div>
+      <div class="ntags" id="ntags"></div>
+      <textarea class="note" id="narea" placeholder="Select a category above or write your own notes..." oninput="saveN()"></textarea>
       <div class="hint" id="nhint"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: New Routine -->
+<div class="modal-overlay" id="modal-routine">
+  <div class="modal">
+    <div class="modal-title">New routine</div>
+    <input id="mr-name" placeholder="Routine name (e.g. Study prep, Wind-down)"/>
+    <div class="modal-btns">
+      <button onclick="closeModal('modal-routine')">Cancel</button>
+      <button class="confirm" onclick="createRoutine()">Create</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: New Note Category -->
+<div class="modal-overlay" id="modal-note">
+  <div class="modal">
+    <div class="modal-title">New note category</div>
+    <input id="mn-name" placeholder="Category name (e.g. Lab notes, Tamil vocab)"/>
+    <div class="modal-btns">
+      <button onclick="closeModal('modal-note')">Cancel</button>
+      <button class="confirm" onclick="createNoteCategory()">Create</button>
     </div>
   </div>
 </div>
@@ -231,7 +312,7 @@ textarea.note:focus{outline:none;border-color:var(--border2)}
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut as fbSignOut,onAuthStateChanged}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import{getFirestore,doc,setDoc,getDoc,onSnapshot,collection,addDoc,deleteDoc,updateDoc,query,where,orderBy}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import{getFirestore,doc,setDoc,getDoc,onSnapshot,collection,addDoc,deleteDoc,updateDoc}from'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const FC={
   apiKey:"AIzaSyBJatE2tKZDlFvak1Xz5VMbpS83K8YPPeo",
@@ -246,23 +327,39 @@ const app=initializeApp(FC);
 const auth=getAuth(app);
 const db=getFirestore(app);
 
-const ND={
+const DEFAULT_NOTES={
   color:`Deep Autumn — your palette\n\nWear: rust, burgundy, olive, terracotta, camel, chocolate, mustard, forest green, ivory\nAvoid: stark white, icy blue, lavender, cobalt, neon, ash grey\n\nIn-store test:\n1. Warm base? (yellow/orange/brown tint)\n2. Muted/earthy? (not neon or icy)\n3. Medium to deep value? (not pastel)\nAll three yes = safe to buy`,
   hair:`Barber instructions\n\n"Textured quiff on top, mid fade on the sides"\n"Keep 3-4 inches on top for volume"\n"Taper the back — no hard disconnect"\n"Matte natural finish, not slicked"\n\nBest: textured/messy quiff, soft side-part quiff\nAvoid: disconnected undercut`,
-  skin:`Skincare routine\n\nMorning:\n1. CeraVe Hydrating Cleanser\n2. Vitamin C serum (10-15%)\n3. Niacinamide moisturizer (5-10%)\n4. SPF 50 broad spectrum\n\nEvening:\n1. CeraVe Hydrating Cleanser\n2. Glycolic acid 5-8% (3x/week) OR alpha arbutin\n3. Niacinamide moisturizer\n\nBeard area: alpha arbutin + niacinamide daily\nTimeline: visible change 8-12 weeks`,
-  kp:`KP routine (thighs/legs)\n\nPre-shower 3x/week: dry brush or exfoliating mitt\nShower: salicylic acid wash — leave 60-90 sec\nPost-shower (within 60 sec): urea cream 10-20%\nDaily: CeraVe tub moisturizer on affected areas\nEvening 3x/week: lactic acid lotion\n\nAvoid: hot showers, tight clothing friction\nTimeline: texture 2-4 wks, dark spots 3-4 months`,
-  wardrobe:`Wardrobe priorities (Toronto)\n\n1. Plain tees earth tones — Uniqlo — $15-20 x3\n2. Dark wash jeans — Zara/H&M Premium — $40-60\n3. Chinos olive or camel — Uniqlo/BR Factory — $40-60\n4. Brown leather sneakers — DSW — $60-100\n5. Structured shirt no logo — Club Monaco/Zara — $40-70\n6. Warm leather belt — Vaughan Mills — $40-60\n\nTotal at sale: $300-400`,
+  skin:`Skincare routine\n\nMorning:\n1. CeraVe Hydrating Cleanser\n2. Vitamin C serum (10-15%)\n3. Niacinamide moisturizer (5-10%)\n4. SPF 50 — apply before leaving, let absorb before dressing\n\nEvening:\n1. CeraVe Hydrating Cleanser\n2. Glycolic acid 5-8% (3x/week) OR alpha arbutin\n3. Niacinamide moisturizer\n\nBeard area: alpha arbutin + niacinamide daily\nTimeline: visible change 8-12 weeks`,
+  kp:`KP routine (thighs/legs)\n\nPre-shower 3x/week: dry brush or exfoliating mitt\nShower: salicylic acid wash — leave 60-90 sec\nPost-shower (within 60 sec): urea cream 10-20%\nDaily: CeraVe tub moisturizer\nEvening 3x/week: lactic acid lotion\n\nAvoid: hot showers, tight clothing friction\nTimeline: texture 2-4 wks, dark spots 3-4 months`,
+  wardrobe:`WARDROBE ASSESSMENT\n\n✅ Wear regularly:\n- Burgundy Adidas tee (small logo)\n- Salmon/coral Nike tee\n- Olive green tee (no logo) — underused, wear more\n- Tan camel polo (no logo) — best piece you own\n- Forest green Adidas tee\n\n⚠️ Casual/gym/home only:\n- Black Adidas 3-stripe — gym only\n- Grey Nautica polo, Plain grey polo, Grey Superdry polo\n- Navy Buffalo henley\n- Burgundy Tommy Hilfiger text tee\n\n❌ Phase out first:\n- Royal blue Tommy Hilfiger polo\n- Navy large-logo Adidas tee\n- Yellow large-logo Adidas tee\n- Hawaiian print shirt\n\nSTAIN FIXES\nDeodorant buildup: crushed aspirin paste OR white vinegar 1hr\nOil stains: dish soap directly, 20min, wash warm\nNote: let SPF/moisturizer fully absorb before dressing`,
   growth:`Growth directions\n\n1. Attachment work — UofT counselling, Attached (Levine)\n2. Journal daily — private, unedited\n3. Rozeske Lab — reliability + coding skills for paid RA\n4. Meditation — Waking Up app, 10min daily\n5. Reading — Meditations, Man's Search for Meaning, Models\n6. Build 2-3 real male friendships\n7. Financial independence — tutoring $25-40/hr\n\nThe work is already genuine. Keep going.`,
   custom:``
 };
 
-let uid=null,gf='all',cn=null,st=null;
-let tasks=[],goals=[],routines={morning:[],evening:[],gym:[]},notes={...ND};
+const DEFAULT_NOTE_LABELS={color:'Deep Autumn',hair:'Hair & barber',skin:'Skincare',kp:'KP routine',wardrobe:'Wardrobe',growth:'Growth',custom:'Custom'};
+
+const DEFAULT_ROUTINES={
+  morning:{name:'Morning skincare',steps:['Gentle cleanser','Vitamin C serum','Niacinamide moisturizer','SPF 50 — apply before leaving']},
+  evening:{name:'Evening skincare',steps:['Gentle cleanser','Glycolic acid (3x/week) or alpha arbutin','Niacinamide moisturizer']},
+  gym:{name:'Gym & body',steps:['Apply SPF before leaving','Reapply after heavy sweat','Dry brush pre-shower (3x/week)','Urea cream on KP areas post-shower']}
+};
+
+const DEFAULT_GOALS=[
+  {t:'Complete Rozeske Lab onboarding',s:'Reliability from day one — leverage coding skills',c:'career',d:false,ts:Date.now()},
+  {t:'Build morning skincare habit',s:'8-12 weeks for visible results',c:'appearance',d:false,ts:Date.now()+1},
+  {t:'Start UofT counselling',s:'Attachment work — highest leverage change',c:'inner',d:false,ts:Date.now()+2},
+  {t:'Buy first earth-tone tee',s:'Uniqlo — replace one logo shirt',c:'appearance',d:false,ts:Date.now()+3},
+  {t:'10min daily meditation',s:'Waking Up app — build solitude capacity',c:'inner',d:false,ts:Date.now()+4},
+  {t:'Read Attached — Amir Levine',s:'Understand your attachment style directly',c:'inner',d:false,ts:Date.now()+5},
+  {t:'Find RA or tutoring income',s:'Financial independence — $25-40/hr tutoring',c:'career',d:false,ts:Date.now()+6},
+];
+
+let uid=null,gf='all',cn=null,saveTimer=null,isSignUp=false;
+let tasks=[],goals=[],routines={},notes={},noteLabels={};
 let unsub=[];
 
-window.signOut=async()=>{await fbSignOut(auth);};
-
-let isSignUp=false;
+// AUTH
 window.toggleMode=()=>{
   isSignUp=!isSignUp;
   document.getElementById('login-btn').textContent=isSignUp?'Create account':'Sign in';
@@ -270,7 +367,6 @@ window.toggleMode=()=>{
   document.getElementById('login-switch').innerHTML=isSignUp?'Have an account? <span>Sign in</span>':'No account? <span>Create one</span>';
   document.getElementById('lerr').textContent='';
 };
-
 window.doAuth=async()=>{
   const email=document.getElementById('lemail').value.trim();
   const pass=document.getElementById('lpass').value;
@@ -280,10 +376,11 @@ window.doAuth=async()=>{
     if(isSignUp)await createUserWithEmailAndPassword(auth,email,pass);
     else await signInWithEmailAndPassword(auth,email,pass);
   }catch(e){
-    const msgs={'auth/user-not-found':'No account found — create one below','auth/wrong-password':'Incorrect password','auth/email-already-in-use':'Email already registered — sign in instead','auth/weak-password':'Password must be at least 6 characters','auth/invalid-email':'Invalid email address','auth/invalid-credential':'Incorrect email or password'};
+    const msgs={'auth/user-not-found':'No account found','auth/wrong-password':'Incorrect password','auth/email-already-in-use':'Email already registered','auth/weak-password':'Password must be 6+ characters','auth/invalid-email':'Invalid email','auth/invalid-credential':'Incorrect email or password'};
     document.getElementById('lerr').textContent=msgs[e.code]||e.message;
   }
 };
+window.signOut=async()=>{await fbSignOut(auth);};
 
 onAuthStateChanged(auth,async user=>{
   if(user){
@@ -293,8 +390,7 @@ onAuthStateChanged(auth,async user=>{
     await initData();
     listen();
   }else{
-    uid=null;
-    unsub.forEach(u=>u());unsub=[];
+    uid=null;unsub.forEach(u=>u());unsub=[];
     document.getElementById('login-screen').style.display='block';
     document.getElementById('app-screen').style.display='none';
   }
@@ -302,53 +398,41 @@ onAuthStateChanged(auth,async user=>{
 
 async function initData(){
   setSyncStatus('syncing');
-  const rRef=doc(db,'users',uid,'data','routines');
-  const rSnap=await getDoc(rRef);
-  if(!rSnap.exists()){
-    await setDoc(rRef,{morning:['Gentle cleanser','Vitamin C serum','Niacinamide moisturizer','SPF 50 — apply before leaving'],evening:['Gentle cleanser','Glycolic acid (3x/week) or alpha arbutin','Niacinamide moisturizer'],gym:['Apply SPF before leaving','Reapply after heavy sweat','Dry brush pre-shower (3x/week)','Urea cream on KP areas post-shower']});
+  // Routines
+  const rSnap=await getDoc(doc(db,'users',uid,'data','routines'));
+  if(!rSnap.exists())await setDoc(doc(db,'users',uid,'data','routines'),DEFAULT_ROUTINES);
+  // Notes
+  const nSnap=await getDoc(doc(db,'users',uid,'data','notes'));
+  if(!nSnap.exists())await setDoc(doc(db,'users',uid,'data','notes'),DEFAULT_NOTES);
+  // Note labels
+  const nlSnap=await getDoc(doc(db,'users',uid,'data','noteLabels'));
+  if(!nlSnap.exists())await setDoc(doc(db,'users',uid,'data','noteLabels'),DEFAULT_NOTE_LABELS);
+  // Goals seed
+  const gMeta=await getDoc(doc(db,'users',uid,'data','goals_meta'));
+  if(!gMeta.exists()){
+    for(const g of DEFAULT_GOALS)await addDoc(collection(db,'users',uid,'goals'),g);
+    await setDoc(doc(db,'users',uid,'data','goals_meta'),{init:true});
   }
-  const nRef=doc(db,'users',uid,'data','notes');
-  const nSnap=await getDoc(nRef);
-  if(!nSnap.exists()){await setDoc(nRef,ND);}
-  const gSnap=await getDoc(doc(db,'users',uid,'data','goals_meta'));
-  if(!gSnap.exists()){
-    const defaultGoals=[
-      {t:'Complete Rozeske Lab onboarding',s:'Reliability from day one — leverage coding skills',c:'career',d:false,ts:Date.now()},
-      {t:'Build morning skincare habit',s:'8-12 weeks for visible results',c:'appearance',d:false,ts:Date.now()+1},
-      {t:'Start UofT counselling',s:'Attachment work — highest leverage change',c:'inner',d:false,ts:Date.now()+2},
-      {t:'Buy first earth-tone tee',s:'Uniqlo — replace one logo shirt',c:'appearance',d:false,ts:Date.now()+3},
-      {t:'10min daily meditation',s:'Waking Up app — build solitude capacity',c:'inner',d:false,ts:Date.now()+4},
-      {t:'Read Attached — Amir Levine',s:'Understand your attachment style directly',c:'inner',d:false,ts:Date.now()+5},
-      {t:'Find RA or tutoring income',s:'Financial independence — $25-40/hr tutoring',c:'career',d:false,ts:Date.now()+6},
-    ];
-    for(const g of defaultGoals){await addDoc(collection(db,'users',uid,'goals'),g);}
-  }else{await setDoc(doc(db,'users',uid,'data','goals_meta'),{init:true});}
   setSyncStatus('ok');
 }
 
 function listen(){
   unsub.forEach(u=>u());unsub=[];
-  unsub.push(onSnapshot(doc(db,'users',uid,'data','routines'),snap=>{if(snap.exists()){routines=snap.data();rrout();}}));
-  unsub.push(onSnapshot(doc(db,'users',uid,'data','notes'),snap=>{if(snap.exists()){notes=snap.data();if(cn)document.getElementById('narea').value=notes[cn]||'';}}));
-  const today=new Date().toDateString();
-  unsub.push(onSnapshot(collection(db,'users',uid,'tasks'),snap=>{
-    tasks=snap.docs.map(d=>({id:d.id,...d.data()}));
-    rdaily();setSyncStatus('ok');
-  }));
-  unsub.push(onSnapshot(collection(db,'users',uid,'goals'),snap=>{
-    goals=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.ts-b.ts);
-    rgoals();rdaily();setSyncStatus('ok');
-  }));
+  unsub.push(onSnapshot(doc(db,'users',uid,'data','routines'),s=>{if(s.exists()){routines=s.data();rrout();}}));
+  unsub.push(onSnapshot(doc(db,'users',uid,'data','notes'),s=>{if(s.exists()){notes=s.data();if(cn)document.getElementById('narea').value=notes[cn]||'';}}));
+  unsub.push(onSnapshot(doc(db,'users',uid,'data','noteLabels'),s=>{if(s.exists()){noteLabels=s.data();renderNoteTags();}}));
+  unsub.push(onSnapshot(collection(db,'users',uid,'tasks'),s=>{tasks=s.docs.map(d=>({id:d.id,...d.data()}));rdaily();setSyncStatus('ok');}));
+  unsub.push(onSnapshot(collection(db,'users',uid,'goals'),s=>{goals=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.ts-b.ts);rgoals();rdaily();renderTimeline();setSyncStatus('ok');}));
 }
 
 function setSyncStatus(s){
-  const dot=document.getElementById('sdot');
-  const txt=document.getElementById('stext');
+  const dot=document.getElementById('sdot'),txt=document.getElementById('stext');
   if(s==='ok'){dot.className='sync-dot ok';txt.textContent='Synced';}
   else if(s==='syncing'){dot.className='sync-dot';txt.textContent='Syncing...';}
   else{dot.className='sync-dot err';txt.textContent='Offline';}
 }
 
+// NAV
 window.go=(id,btn)=>{
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
@@ -356,9 +440,40 @@ window.go=(id,btn)=>{
   document.getElementById('p-'+id).classList.add('on');
 };
 
+// TIMELINE
+function renderTimeline(){
+  const el=document.getElementById('timeline-section');
+  const now=new Date();
+  const upcoming=goals.filter(g=>!g.d&&g.dueDate).map(g=>{
+    const due=new Date(g.dueDate+(g.dueTime?'T'+g.dueTime:''));
+    const diff=Math.ceil((due-now)/86400000);
+    return{...g,due,diff};
+  }).sort((a,b)=>a.due-b.due).slice(0,5);
+  if(!upcoming.length){el.innerHTML='';return;}
+  const urgent=upcoming.filter(g=>g.diff<=1);
+  const soon=upcoming.filter(g=>g.diff>1&&g.diff<=7);
+  let html='';
+  if(urgent.length){
+    html+=`<div class="timeline-banner tl-urgent"><div class="tl-title" style="color:var(--danger)">⚠️ Due today or tomorrow</div>`;
+    urgent.forEach(g=>{html+=`<div class="tl-item"><span style="flex:1">${esc(g.t)}</span><span class="tl-badge urgent-badge">${g.diff<=0?'Today':'Tomorrow'}</span></div>`;});
+    html+='</div>';
+  }
+  if(soon.length){
+    html+=`<div class="timeline-banner tl-soon"><div class="tl-title" style="color:var(--warn)">📅 Due this week</div>`;
+    soon.forEach(g=>{html+=`<div class="tl-item"><span style="flex:1">${esc(g.t)}</span><span class="tl-badge soon-badge">in ${g.diff}d</span></div>`;});
+    html+='</div>';
+  }
+  el.innerHTML=html;
+}
+
+// DAILY
 function rdaily(){
   const today=new Date().toDateString();
-  const tt=tasks.filter(t=>t.date===today);
+  const tt=tasks.filter(t=>t.date===today).sort((a,b)=>{
+    if(!a.time_val&&!b.time_val)return 0;
+    if(!a.time_val)return 1;if(!b.time_val)return -1;
+    return a.time_val.localeCompare(b.time_val);
+  });
   const done=tt.filter(t=>t.d).length;
   const pct=tt.length?Math.round(done/tt.length*100):0;
   document.getElementById('m-done').textContent=done+'/'+tt.length;
@@ -369,14 +484,43 @@ function rdaily(){
   document.getElementById('m-gsub').textContent='of '+goals.length;
   const el=document.getElementById('task-list');
   if(!tt.length){el.innerHTML='<div class="empty">No tasks yet — add one below</div>';return;}
-  el.innerHTML=tt.map(t=>`<div class="trow"><div class="cb ${t.d?'on':''}" onclick="tog('${t.id}')"></div><span class="tl ${t.d?'done':''}">${esc(t.text)}</span><span class="pill p-${t.time}">${t.time}</span><span class="dbtn" onclick="dtask('${t.id}')">&times;</span></div>`).join('');
+  const now=new Date();
+  el.innerHTML=tt.map(t=>{
+    let timeStr='',timeClass='';
+    if(t.time_val){
+      timeStr=fmt12(t.time_val);
+      if(!t.d){
+        const[h,m]=t.time_val.split(':').map(Number);
+        const taskTime=new Date();taskTime.setHours(h,m,0,0);
+        const diff=(taskTime-now)/60000;
+        if(diff<0)timeClass='due-urgent';
+        else if(diff<60)timeClass='due-soon';
+      }
+    }
+    return`<div class="trow">
+      <div class="cb ${t.d?'on':''}" onclick="tog('${t.id}')"></div>
+      <div class="tinfo">
+        <div class="tl ${t.d?'done':''}">${esc(t.text)}</div>
+        <div class="tmeta">
+          <span class="pill p-${t.time}">${t.time}</span>
+          ${timeStr?`<span class="time-pill ${timeClass}">🕐 ${timeStr}</span>`:''}
+        </div>
+      </div>
+      <span class="dbtn" onclick="dtask('${t.id}')">&times;</span>
+    </div>`;
+  }).join('');
+}
+
+function fmt12(t){
+  const[h,m]=t.split(':').map(Number);
+  const ampm=h>=12?'PM':'AM';
+  return((h%12)||12)+':'+(m<10?'0'+m:m)+' '+ampm;
 }
 
 function calcStreak(){
   const dates=[...new Set(tasks.filter(t=>t.d).map(t=>t.date))].sort();
   if(!dates.length)return 0;
-  const today=new Date();
-  if(Math.round((today-new Date(dates[dates.length-1]))/86400000)>1)return 0;
+  if(Math.round((new Date()-new Date(dates[dates.length-1]))/86400000)>1)return 0;
   let s=1;
   for(let i=dates.length-2;i>=0;i--){if(Math.round((new Date(dates[i+1])-new Date(dates[i]))/86400000)===1)s++;else break;}
   return s;
@@ -384,73 +528,135 @@ function calcStreak(){
 
 window.addTask=async()=>{
   const v=document.getElementById('ti').value.trim();if(!v)return;
+  const tv=document.getElementById('ttime').value;
   setSyncStatus('syncing');
-  await addDoc(collection(db,'users',uid,'tasks'),{text:v,time:document.getElementById('tt').value,date:new Date().toDateString(),d:false,ts:Date.now()});
-  document.getElementById('ti').value='';
+  await addDoc(collection(db,'users',uid,'tasks'),{text:v,time:document.getElementById('tt').value,time_val:tv||null,date:new Date().toDateString(),d:false,ts:Date.now()});
+  document.getElementById('ti').value='';document.getElementById('ttime').value='';
 };
+window.tog=async(id)=>{const t=tasks.find(x=>x.id===id);if(!t)return;setSyncStatus('syncing');await updateDoc(doc(db,'users',uid,'tasks',id),{d:!t.d});};
+window.dtask=async(id)=>{setSyncStatus('syncing');await deleteDoc(doc(db,'users',uid,'tasks',id));};
 
-window.tog=async(id)=>{
-  const t=tasks.find(x=>x.id===id);if(!t)return;
-  setSyncStatus('syncing');
-  await updateDoc(doc(db,'users',uid,'tasks',id),{d:!t.d});
-};
-
-window.dtask=async(id)=>{
-  setSyncStatus('syncing');
-  await deleteDoc(doc(db,'users',uid,'tasks',id));
-};
-
+// ROUTINES
 function rrout(){
-  ['morning','evening','gym'].forEach(k=>{
-    const el=document.getElementById('r-'+k);if(!el)return;
-    el.innerHTML=(routines[k]||[]).map((s,i)=>`<div class="rrow"><span class="rnum">${i+1}</span><span class="tl">${esc(s)}</span><span class="dbtn" onclick="dR('${k}',${i})">&times;</span></div>`).join('');
-  });
+  const el=document.getElementById('routines-list');
+  if(!el)return;
+  const keys=Object.keys(routines);
+  if(!keys.length){el.innerHTML='<div class="empty">No routines yet — add one above</div>';return;}
+  el.innerHTML=keys.map(k=>{
+    const r=routines[k];
+    const steps=(r.steps||[]);
+    return`<div class="card" style="margin-bottom:12px">
+      <div class="rout-header">
+        <span class="rout-name">${esc(r.name||k)}</span>
+        <div class="rout-actions">
+          <button class="icon-btn del" onclick="deleteRoutine('${k}')">✕ Remove</button>
+        </div>
+      </div>
+      ${steps.map((s,i)=>`<div class="rrow"><span class="rnum">${i+1}</span><span class="tl" style="flex:1">${esc(s)}</span><span class="dbtn icon-btn del" onclick="dRStep('${k}',${i})">&times;</span></div>`).join('')}
+      <div class="add-row">
+        <input id="ri-${k}" placeholder="Add step..." onkeydown="if(event.key==='Enter')addRStep('${k}','ri-${k}')"/>
+        <button class="abtn" onclick="addRStep('${k}','ri-${k}')">Add</button>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-window.addR=async(k,iid)=>{
+window.addRStep=async(k,iid)=>{
   const v=document.getElementById(iid).value.trim();if(!v)return;
-  const updated={...routines};updated[k]=[...(updated[k]||[]),v];
-  setSyncStatus('syncing');
-  await setDoc(doc(db,'users',uid,'data','routines'),updated);
+  const updated={...routines};updated[k]={...updated[k],steps:[...(updated[k].steps||[]),v]};
+  setSyncStatus('syncing');await setDoc(doc(db,'users',uid,'data','routines'),updated);
   document.getElementById(iid).value='';
 };
-
-window.dR=async(k,i)=>{
-  const updated={...routines};updated[k]=updated[k].filter((_,j)=>j!==i);
-  setSyncStatus('syncing');
-  await setDoc(doc(db,'users',uid,'data','routines'),updated);
+window.dRStep=async(k,i)=>{
+  const updated={...routines};updated[k]={...updated[k],steps:updated[k].steps.filter((_,j)=>j!==i)};
+  setSyncStatus('syncing');await setDoc(doc(db,'users',uid,'data','routines'),updated);
+};
+window.deleteRoutine=async(k)=>{
+  if(!confirm('Remove this routine?'))return;
+  const updated={...routines};delete updated[k];
+  setSyncStatus('syncing');await setDoc(doc(db,'users',uid,'data','routines'),updated);
 };
 
+// New Routine Modal
+window.openNewRoutineModal=()=>{document.getElementById('modal-routine').classList.add('open');setTimeout(()=>document.getElementById('mr-name').focus(),100);};
+window.createRoutine=async()=>{
+  const name=document.getElementById('mr-name').value.trim();if(!name)return;
+  const key='r_'+Date.now();
+  const updated={...routines};updated[key]={name,steps:[]};
+  setSyncStatus('syncing');await setDoc(doc(db,'users',uid,'data','routines'),updated);
+  document.getElementById('mr-name').value='';closeModal('modal-routine');
+};
+
+// GOALS
 function rgoals(){
   const list=document.getElementById('goal-list');
+  const now=new Date();
   const fg=goals.filter(g=>gf==='all'||g.c===gf);
   if(!fg.length){list.innerHTML='<div class="empty">No goals here yet</div>';return;}
-  list.innerHTML=fg.map(g=>`<div class="goal-item"><div class="cb ${g.d?'on':''}" style="margin-top:2px" onclick="tgoal('${g.id}','${g.d}')"></div><div class="gbody"><div class="gt ${g.d?'done':''}">${esc(g.t)}</div><div class="gs">${esc(g.s)}</div><span class="cpill c-${g.c}">${g.c}</span></div><span class="dbtn" style="margin-top:2px" onclick="dgoal('${g.id}')">&times;</span></div>`).join('');
+  list.innerHTML=fg.map(g=>{
+    let dueStr='',dueClass='';
+    if(g.dueDate){
+      const due=new Date(g.dueDate+(g.dueTime?'T'+g.dueTime:''));
+      const diff=Math.ceil((due-now)/86400000);
+      if(diff<=0){dueStr='Due today';dueClass='urgent';}
+      else if(diff===1){dueStr='Due tomorrow';dueClass='urgent';}
+      else if(diff<=7){dueStr=`Due in ${diff} days`;dueClass='soon';}
+      else{dueStr=`Due ${due.toLocaleDateString('en-CA',{month:'short',day:'numeric'})}`;dueClass='';}
+    }
+    return`<div class="goal-item">
+      <div class="cb ${g.d?'on':''}" style="margin-top:2px" onclick="tgoal('${g.id}','${g.d}')"></div>
+      <div class="gbody">
+        <div class="gt ${g.d?'done':''}">${esc(g.t)}</div>
+        <div class="gs">${esc(g.s)}</div>
+        <div class="gmeta">
+          <span class="cpill c-${g.c}">${g.c}</span>
+          ${dueStr?`<span class="gdue ${dueClass}">📅 ${dueStr}</span>`:''}
+        </div>
+      </div>
+      <span class="dbtn" style="margin-top:2px" onclick="dgoal('${g.id}')">&times;</span>
+    </div>`;
+  }).join('');
 }
 
 window.filt=(f,el)=>{gf=f;document.querySelectorAll('#fchips .chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');rgoals();};
 window.tgoal=async(id,cur)=>{setSyncStatus('syncing');await updateDoc(doc(db,'users',uid,'goals',id),{d:cur!=='true'&&cur!==true});};
 window.dgoal=async(id)=>{setSyncStatus('syncing');await deleteDoc(doc(db,'users',uid,'goals',id));};
-
 window.addGoal=async()=>{
   const t=document.getElementById('gi-t').value.trim();if(!t)return;
   setSyncStatus('syncing');
-  await addDoc(collection(db,'users',uid,'goals'),{t,s:document.getElementById('gi-s').value.trim(),c:document.getElementById('gi-c').value,d:false,ts:Date.now()});
+  await addDoc(collection(db,'users',uid,'goals'),{
+    t,s:document.getElementById('gi-s').value.trim(),
+    c:document.getElementById('gi-c').value,
+    dueDate:document.getElementById('gi-date').value||null,
+    dueTime:document.getElementById('gi-time').value||null,
+    d:false,ts:Date.now()
+  });
   document.getElementById('gi-t').value='';document.getElementById('gi-s').value='';
+  document.getElementById('gi-date').value='';document.getElementById('gi-time').value='';
 };
+
+// NOTES
+function renderNoteTags(){
+  const el=document.getElementById('ntags');
+  const builtIn=['color','hair','skin','kp','wardrobe','growth','custom'];
+  el.innerHTML=Object.entries(noteLabels).map(([k,label])=>{
+    const isBuiltIn=builtIn.includes(k);
+    return`<span class="ntag ${cn===k?'on':''}" onclick="loadN('${k}',this)">${esc(label)}${!isBuiltIn?`<span class="ntag-del" onclick="event.stopPropagation();delNoteCategory('${k}')">&times;</span>`:''}</span>`;
+  }).join('');
+}
 
 window.loadN=(key,el)=>{
   cn=key;
   document.querySelectorAll('#ntags .ntag').forEach(t=>t.classList.remove('on'));
   el.classList.add('on');
-  document.getElementById('narea').value=notes[key]!==undefined?notes[key]:(ND[key]||'');
+  document.getElementById('narea').value=notes[key]!==undefined?notes[key]:(DEFAULT_NOTES[key]||'');
   document.getElementById('nhint').textContent='';
 };
 
 window.saveN=()=>{
   if(!cn)return;
-  clearTimeout(st);
-  st=setTimeout(async()=>{
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(async()=>{
     setSyncStatus('syncing');
     const updated={...notes};updated[cn]=document.getElementById('narea').value;
     await setDoc(doc(db,'users',uid,'data','notes'),updated);
@@ -459,7 +665,32 @@ window.saveN=()=>{
   },800);
 };
 
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+window.openNewNoteModal=()=>{document.getElementById('modal-note').classList.add('open');setTimeout(()=>document.getElementById('mn-name').focus(),100);};
+window.createNoteCategory=async()=>{
+  const name=document.getElementById('mn-name').value.trim();if(!name)return;
+  const key='n_'+Date.now();
+  setSyncStatus('syncing');
+  const updatedLabels={...noteLabels,[key]:name};
+  const updatedNotes={...notes,[key]:''};
+  await setDoc(doc(db,'users',uid,'data','noteLabels'),updatedLabels);
+  await setDoc(doc(db,'users',uid,'data','notes'),updatedNotes);
+  document.getElementById('mn-name').value='';closeModal('modal-note');
+};
+window.delNoteCategory=async(k)=>{
+  if(!confirm('Delete this note category and its content?'))return;
+  const updatedLabels={...noteLabels};delete updatedLabels[k];
+  const updatedNotes={...notes};delete updatedNotes[k];
+  setSyncStatus('syncing');
+  await setDoc(doc(db,'users',uid,'data','noteLabels'),updatedLabels);
+  await setDoc(doc(db,'users',uid,'data','notes'),updatedNotes);
+  if(cn===k){cn=null;document.getElementById('narea').value='';}
+};
+
+// MODAL UTILS
+window.closeModal=(id)=>{document.getElementById(id).classList.remove('open');};
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 document.getElementById('hdate').textContent=new Date().toLocaleDateString('en-CA',{weekday:'long',month:'long',day:'numeric'});
 </script>
